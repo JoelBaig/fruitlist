@@ -1,12 +1,12 @@
 <div class="fruitlist_content">
-    @for(item of fruitlist; track item.name){
+    @for(item of fruitlist; track item.name; let index = $index){
 
     <section class="singleFruitBox">
         <div>
             <img src="./assets/img/fruits/{{item.img}}" alt="" srcset="">
         </div>
         <div>
-            <h2> {{item.name}}</h2>
+            <h2><app-singlefruit [fruitnumber]="index"></app-singlefruit> {{item.name}}</h2>
             <div>
                 <p><b>Bewertung:</b></p>
                 <div>
@@ -20,8 +20,13 @@
                     }
                     }
 
-                    <p
+                    <!-- <p
                         [ngStyle]="{color: item.stars > 4 ? fontColorGood: item.stars > 2.5 ? fontColorOkay: fontColorBad}">
+                        ({{item.stars}})
+                    </p> -->
+
+                    <p
+                        [ngClass]="{'fontColorBad bgWhite': item.stars < 2.5, 'fontColorOkay': item.stars < 4, 'fontColorGood': item.stars >= 4,}">
                         ({{item.stars}})
                     </p>
                 </div>
